@@ -5,10 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { HeaderComponent } from './component/header/header.component';
+import { TopComponent } from './page/top/top.component';
+
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent],
-  imports: [BrowserModule, AppRoutingModule],
+  declarations: [AppComponent, HeaderComponent, FooterComponent, TopComponent],
+  imports: [BrowserModule, AppRoutingModule, ScrollPanelModule],
   providers: [],
   bootstrap: [AppComponent],
 })
