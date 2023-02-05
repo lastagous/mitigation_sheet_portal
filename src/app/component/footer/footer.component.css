@@ -1,3 +1,31 @@
 .footer {
-	background-color: var(--surface-a);
+  background: #616161;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.logo-area {
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-size: 13px;
+}
+
+.logo {
+  height: 24px;
+  width: auto;
+  margin: 8px;
+}
+
+.footer-link {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
