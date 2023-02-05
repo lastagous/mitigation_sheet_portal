@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TopComponent } from './page/top/top.component';
+import { TableComponent } from './page/table/table.component';
 
 const routes: Routes = [
-  { path: 'top', component: TopComponent },
-  { path: '', redirectTo: '/top', pathMatch: 'full' },
-  { path: '**', redirectTo: '/top', pathMatch: 'full' },
+  { path: 'mitigationsheet/:sheetId/:sheetName', component: TableComponent },
+  { path: '', redirectTo: '/mitigationsheet', pathMatch: 'full' },
+  { path: '**', redirectTo: '/mitigationsheet', pathMatch: 'full' },
 ];
 
 @NgModule({
