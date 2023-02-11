@@ -5,13 +5,13 @@ import { RecastCheckModel, TimelineModel } from '../model/timeline';
 
 @Injectable()
 export class SpreadSheetStore {
-  apiKey: string = 'AIzaSyAn0osIBJR0dOg0nCvh56fm1Vq9mFYFQNQ';
-  _sheetId: string = '';
-  _sheetName: string = '';
+  private apiKey: string = 'AIzaSyAn0osIBJR0dOg0nCvh56fm1Vq9mFYFQNQ';
+  private _sheetId: string = '';
+  private _sheetName: string = '';
 
-  _skillList: SkillModel[] = [];
-  _timelineList: TimelineModel[] = [];
-  _isCheckIndexList: number[] = [];
+  private _skillList: SkillModel[] = [];
+  private _timelineList: TimelineModel[] = [];
+  private _isCheckIndexList: number[] = [];
 
   constructor(private _httpClient: HttpClient) {}
 
@@ -58,7 +58,6 @@ export class SpreadSheetStore {
   public getMitigationSheet(): Promise<void> {
     return new Promise<void>((resolve, reject) => {
       this._httpClient.get(this.getSheetUrl()).subscribe((response: any) => {
-        console.log(response);
         const values: string[][] = response?.values;
         const header: string[] = values[1];
         const job: string[] = values[2];
