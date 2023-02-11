@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { TimelineModel } from 'src/app/model/timeline';
+import { SpreadSheetStore } from 'src/app/store/spreadsheet.store';
 
 @Component({
   selector: 'app-table',
@@ -8,26 +9,21 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./table.component.less'],
 })
 export class TableComponent implements OnInit {
-  sheetId: string = '';
-  sheetName: string = '';
-  apiKey: string = 'AIzaSyAn0osIBJR0dOg0nCvh56fm1Vq9mFYFQNQ';
-
   constructor(
     private _route: ActivatedRoute,
-    private _httpClient: HttpClient
+    private _ssStore: SpreadSheetStore
   ) {}
 
   ngOnInit(): void {
-    this._route.params.subscribe((params) => {
-      this.sheetId = params['sheetId'];
-      this.sheetName = params['sheetName'];
-      this._httpClient.get(this.getSheetUrl()).subscribe((response) => {
-        console.log(response);
-      });
+    this._route.params.subscribe(async (params) => {
+      this._ssStore.sheetId = params['sheetId'];
+      this._ssStore.sheetName = params['sheetName'];
+      await this._ssStore.getSkillSheet();
+      await this._ssStore.getMitigationSheet();
     });
   }
 
-  public getSheetUrl(): string {
-    return `https://sheets.googleapis.com/v4/spreadsheets/${this.sheetId}/values/${this.sheetName}?key=${this.apiKey}`;
+  public get timelineList(): TimelineModel[] {
+    return this._ssStore.timelineList;
   }
 }

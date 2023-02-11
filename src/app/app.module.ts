@@ -6,9 +6,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { HeaderComponent } from './component/header/header.component';
+import { TableComponent } from './page/table/table.component';
+import { SpreadSheetStore } from './store/spreadsheet.store';
 
 import { ScrollPanelModule } from 'primeng/scrollpanel';
-import { TableComponent } from './page/table/table.component';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -22,8 +24,9 @@ import { TableComponent } from './page/table/table.component';
     AppRoutingModule,
     HttpClientModule,
     ScrollPanelModule,
+    TableModule,
   ],
-  providers: [],
+  providers: [SpreadSheetStore],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
