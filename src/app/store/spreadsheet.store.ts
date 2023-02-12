@@ -74,10 +74,7 @@ export class SpreadSheetStore {
           const jLength: number = inner.length;
           for (var j = checkStart; j < jLength; j++) {
             if (this.skillList.find((value) => value.name == skill[j])) {
-              const beforeInner = values[i - 1];
-              const isCheck: boolean =
-                inner[j] == 'TRUE' && beforeInner[j] != 'TRUE';
-
+              const isCheck: boolean = inner[j] == 'TRUE';
               const targetSkill: SkillModel | undefined = this.skillList.find(
                 (value) => value.name == skill[j]
               );
@@ -94,8 +91,11 @@ export class SpreadSheetStore {
                   .toString()
                   .padStart(6, '0')}.png`,
               });
-              if (isCheck && !this.isCheckIndexList.includes(j - checkStart))
-                this.isCheckIndexList.push(j - checkStart);
+              if (
+                isCheck &&
+                !this.isCheckIndexList.includes(checkList.length - 1)
+              )
+                this.isCheckIndexList.push(checkList.length - 1);
             }
           }
           this.timelineList.push({

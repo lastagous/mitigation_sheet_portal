@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { TimelineModel } from 'src/app/model/timeline';
+import { RecastCheckModel, TimelineModel } from 'src/app/model/timeline';
 import { SpreadSheetStore } from 'src/app/store/spreadsheet.store';
+import { TableStore } from 'src/app/store/table.store';
 
 @Component({
   selector: 'app-table',
@@ -11,7 +12,8 @@ import { SpreadSheetStore } from 'src/app/store/spreadsheet.store';
 export class TableComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
-    private _ssStore: SpreadSheetStore
+    private _ssStore: SpreadSheetStore,
+    private _tableStore: TableStore
   ) {}
 
   ngOnInit(): void {
@@ -20,10 +22,19 @@ export class TableComponent implements OnInit {
       this._ssStore.sheetName = params['sheetName'];
       await this._ssStore.getSkillSheet();
       await this._ssStore.getMitigationSheet();
+      this._tableStore.generateTableData();
     });
   }
 
+  public get headerList(): RecastCheckModel[] {
+    return this._tableStore.viewHeaderList;
+  }
+
   public get timelineList(): TimelineModel[] {
-    return this._ssStore.timelineList;
+    return this._tableStore.viewIconList;
+  }
+
+  public get sheetName(): string {
+    return this._ssStore.sheetName;
   }
 }

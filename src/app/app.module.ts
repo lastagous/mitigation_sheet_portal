@@ -8,6 +8,7 @@ import { FooterComponent } from './component/footer/footer.component';
 import { HeaderComponent } from './component/header/header.component';
 import { TableComponent } from './page/table/table.component';
 import { SpreadSheetStore } from './store/spreadsheet.store';
+import { TableStore } from './store/table.store';
 
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { TableModule } from 'primeng/table';
@@ -26,7 +27,7 @@ import { TableModule } from 'primeng/table';
     ScrollPanelModule,
     TableModule,
   ],
-  providers: [SpreadSheetStore],
+  providers: [SpreadSheetStore, TableStore],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
